@@ -28,7 +28,7 @@ function carregarTabela() {
                                     '<td>' + cliente.NOME + '</td>' + 
                                     '<td>' + cliente.EMAIL + '</td>' + 
                                     '<td>' + cliente.TIPO + '</td>' + 
-                                    '<td>' + cliente.ID + '</td></tr>'
+                                    '<td><button id="btnAlterar" value="' + cliente.ID + '">Alterar</button><button id="btnExcluir" value="' + cliente.ID + '">Excluir</button></td>'
             });
         })
 }
