@@ -33,11 +33,23 @@ btnConsultaId.addEventListener('click', () =>{
 })
 
 btnConsultaGeral.addEventListener('click', () => {
+    var tabela = ' '
     fetch(URL_BASE)
         .then( response => response.json())
         .then( json => {
             json.forEach(cliente => {
-                console.log(cliente.NOME)
+                console.log(cliente.ID)
+                tabela += `
+                <tr>
+                    <th scope="row"></th>
+                    <td>${cliente.ID}</td>
+                    <td>${cliente.NOME}</td>
+                    <td>${cliente.EMAIL}</td>
+                    <td>${cliente.TIPO}</td>
+                    <td><button id="btnAlterar">Alterar</button><button id="btnExcluir">Excluir</button></td>
+                </tr>
+                `
             });
+            tdados.innerHTML = tabela
         })
 })
