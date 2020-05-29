@@ -1,4 +1,4 @@
-const URL_BASE = 'https://www.wllsistemas.com.br/api/v2/public/pessoa/';
+const URL_BASE = 'https://www.wllsistemas.com.br/api/v2/public/pessoa/'
 
 gravar.addEventListener('click', () => {
 
@@ -29,5 +29,15 @@ btnConsultaId.addEventListener('click', () =>{
                 Nome: ${ json[0].NOME}<br>
                 Email: ${ json[0].EMAIL}<br>
                 Tipo: ${ json[0].TIPO}<br>`
+        })
+})
+
+btnConsultaGeral.addEventListener('click', () => {
+    fetch(URL_BASE)
+        .then( response => response.json())
+        .then( json => {
+            json.forEach(cliente => {
+                console.log(cliente.NOME)
+            });
         })
 })
