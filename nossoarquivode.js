@@ -86,3 +86,34 @@ btnConsultaGeral.addEventListener('click', () => {
             tdados.innerHTML = tabela
         })
 })
+
+function isValidForm() {
+    let error = true;
+
+    if (nome.value == '') {
+        nome.style.border = '2px solid red';
+        pResultado.innerHTML = 'Favor preencher o campo Nome';
+
+        error = false;
+    } else {
+        nome.style.border = '1px solid #ccc';
+    }
+
+    if (email.value == '') {
+        email.style.border = '2px solid red';
+        pResultado.innerHTML = 'Favor preencher o campo E-mail';
+
+        error = false;
+    } else {
+        email.style.border = '1px solid #ccc';
+    }
+
+    if (tipo.value == '') {
+        tipo.style.border = '2px solid red';
+        pResultado.innerHTML = 'Favor selecionar um tipo';
+
+        error = false;
+    } else {
+        tipo.style.border = '1px solid #ccc';
+    }
+}
