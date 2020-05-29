@@ -24,7 +24,11 @@ function carregarTabela() {
         // .then(json => retornoBotoes.innerHTML = json[0].NOME)
         .then(json => {
             json.forEach(cliente => {
-                retornoBotoes.innerHTML += cliente.NOME + '<br>';
+                tDados.innerHTML += '<td>' + cliente.ID + '</td>' +
+                                    '<td>' + cliente.NOME + '</td>' + 
+                                    '<td>' + cliente.EMAIL + '</td>' + 
+                                    '<td>' + cliente.TIPO + '</td>' + 
+                                    '<td>' + cliente.ID + '</td>'
             });
         })
 }
