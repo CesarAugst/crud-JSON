@@ -4,10 +4,11 @@ document.onload(carregarTabela())
 
 gravar.addEventListener('click', () => {
 
-    if (isValidForm()) {
+    if (!isValidForm()) {
+        console.log('ok')
         fetch(URL_BASE, {
                 method: 'POST',
-                body: `NOME=${nome.value}&EMAIL=${email.value}&TIPO=${tipo.value}`,
+                body: `nome=${nome.value}&email=${email.value}&tipo=${tipo.value}`,
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
