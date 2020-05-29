@@ -4,10 +4,11 @@ document.onload(carregarTabela())
 
 gravar.addEventListener('click', () => {
 
-    if (isValidForm()) {
+    if (!isValidForm()) {
+        console.log('ok')
         fetch(URL_BASE, {
                 method: 'POST',
-                body: `NOME=${nome.value}&EMAIL=${email.value}&TIPO=${tipo.value}`,
+                body: `nome=${nome.value}&email=${email.value}&tipo=${tipo.value}`,
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
@@ -85,3 +86,34 @@ btnConsultaGeral.addEventListener('click', () => {
             tdados.innerHTML = tabela
         })
 })
+
+function isValidForm() {
+    let error = true;
+
+    if (nome.value == '') {
+        nome.style.border = '2px solid red';
+        pResultado.innerHTML = 'Favor preencher o campo Nome';
+
+        error = false;
+    } else {
+        nome.style.border = '1px solid #ccc';
+    }
+
+    if (email.value == '') {
+        email.style.border = '2px solid red';
+        pResultado.innerHTML = 'Favor preencher o campo E-mail';
+
+        error = false;
+    } else {
+        email.style.border = '1px solid #ccc';
+    }
+
+    if (tipo.value == '') {
+        tipo.style.border = '2px solid red';
+        pResultado.innerHTML = 'Favor selecionar um tipo';
+
+        error = false;
+    } else {
+        tipo.style.border = '1px solid #ccc';
+    }
+}
