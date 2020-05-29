@@ -24,11 +24,11 @@ function carregarTabela() {
         // .then(json => retornoBotoes.innerHTML = json[0].NOME)
         .then(json => {
             json.forEach(cliente => {
-                tDados.innerHTML += '<td>' + cliente.ID + '</td>' +
+                tDados.innerHTML += '<tr><td>' + cliente.ID + '</td>' +
                                     '<td>' + cliente.NOME + '</td>' + 
                                     '<td>' + cliente.EMAIL + '</td>' + 
                                     '<td>' + cliente.TIPO + '</td>' + 
-                                    '<td>' + cliente.ID + '</td>'
+                                    '<td>' + cliente.ID + '</td></tr>'
             });
         })
 }
