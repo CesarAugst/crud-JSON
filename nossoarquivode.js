@@ -1,6 +1,8 @@
 const URL_BASE = 'https://www.wllsistemas.com.br/api/v2/public/pessoa/'
 
-document.onload(carregarTabela())
+window.addEventListener("load", function(event) {
+    carregarTabela()
+});
 
 gravar.addEventListener('click', () => {
 
@@ -29,12 +31,13 @@ function carregarTabela() {
                                     '<td>' + cliente.NOME + '</td>' + 
                                     '<td>' + cliente.EMAIL + '</td>' + 
                                     '<td>' + cliente.TIPO + '</td>' + 
-                                    '<td><button id="btnAlterar" value="' + cliente.ID + '" class="col btn btn-dark">Alterar</button><button id="btnExcluir" value="' + cliente.ID + '" class="col btn btn-dark">Excluir</button></td>'
+                                    '<td><button id="btnAlterar" onclick="editarDado(this.value);" value="' + cliente.ID + '" class="col btn btn-dark">Alterar</button><button id="btnExcluir" value="' + cliente.ID + '" class="col btn btn-dark">Excluir</button></td>'
             });
         })
 }
 
 function editarDado(idDado){
+    alert('foi carai, o id é ' + idDado)
     fetch(URL_BASE, {
         method: 'PUT',
         body: `ID=${idDado}&NOME=${nome.value}&EMAIL=${email.value}&TIPO=${tipo.value}`,
