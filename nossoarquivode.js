@@ -1,6 +1,8 @@
 const URL_BASE = 'https://www.wllsistemas.com.br/api/v2/public/pessoa/'
 
-document.onload(carregarTabela())
+window.addEventListener("load", function(event) {
+    carregarTabela()
+});
 
 gravar.addEventListener('click', () => {
 
