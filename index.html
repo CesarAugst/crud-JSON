@@ -28,9 +28,9 @@
                 </select>
                 <div class="buttongroup">
                     <input type="hidden" id="incluir" value="incluir">
-                    <button type="button" id="gravar"> Gravar </button>
-                    <button type="button" id="limpar">Limpar</button>
-                    <button type="button" id="btnConsultaId">Pesquisar ID</button>
+                    <button type="button" id="gravar" class="btn btn-light"> Gravar </button>
+                    <button type="button" id="limpar" class="btn btn-light">Limpar</button>
+                    <button type="button" id="btnConsultaId" class="btn btn-light">Pesquisar ID</button>
                     <span id="load"></span>
                 </div>
             </form>
@@ -55,13 +55,15 @@
                         <td>Vazio</td>
                         <td>Vazio</td>
                         <td>Vazio</td>
-                        <td><button id="btnAlterar">Alterar</button><button id="btnExcluir">Excluir</button></td>
+                        
+                    </tr>
+                    <tr>
+                        <td><button id="btnAlterar" class="col btn btn-dark">Alterar</button></td>
+                        <td><button id="btnExcluir" class="btn btn-dark">Excluir</button></td>
                     </tr>
                 </tbody>
                 <tfoot>
-                    <tr>
-                        <td colspan="4">Fim da tabela</td>
-                    </tr>
+
                 </tfoot>
             </table>
         </div>
