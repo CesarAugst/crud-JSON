@@ -31,6 +31,7 @@
                     <button type="button" id="gravar" class="btn btn-light"> Gravar </button>
                     <button type="button" id="limpar" class="btn btn-light">Limpar</button>
                     <button type="button" id="btnConsultaId" class="btn btn-light">Pesquisar ID</button>
+                    <button type="button" id="btnConsultaGeral" class="btn btn-light">Pesquisar ALL</button>
                     <span id="load"></span>
                 </div>
             </form>
@@ -38,7 +39,8 @@
         </div>
 
         <div class="row">
-            <table class="table table-striped">
+            <table class="table table-striped" id="tResultado">
+
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">ID</th>
@@ -48,14 +50,14 @@
                         <th scope="col">AÇÃO</th>
                     </tr>
                 </thead>
-                <tbody id="tdados">
+                <tbody id="tDados">
                     <tr>
                         <th scope="row"></th>
                         <td>Vazio</td>
                         <td>Vazio</td>
                         <td>Vazio</td>
                         <td>Vazio</td>
-                        
+                        <td>Vazio</td>
                     </tr>
                     <tr>
                         <td><button id="btnAlterar" class="col btn btn-dark">Alterar</button></td>
