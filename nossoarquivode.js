@@ -47,26 +47,14 @@ function carregarTabela() {
     statusCarregando() 
     var tabela = ''
     var id = txtId.value
-    if(id== ""){
-        fetch(URL_BASE)
-        .then(response => response.json())
-        .then(json => {
-            json.forEach(cliente => {
-                tabela += `
-                <tr>
-                    <td class="align-middle">${cliente.ID}</td>
-                    <td class="align-middle">${cliente.NOME}</td>
-                    <td class="align-middle">${cliente.EMAIL}</td>
-                    <td class="align-middle">${cliente.TIPO}</td>
-                    <td><button id="btnAlterar" onclick="inserirDadosForm(this.value);" value="${cliente.ID}" class="col btn btn-info">Alterar</button><button id="btnExcluir" onclick="excluirDado(this.value)" value="${cliente.ID}" class="col btn btn-danger mt-2">Excluir</button></td>
-                </tr>
-                `
-            });
-            tDados.innerHTML = tabela
-            statusLimpo()
-        })
+
+    if(id == ""){
+        url = URL_BASE // se não tiver id digitado então pesquisa todos
     }else{
-        fetch(URL_BASE + id)
+        url = URL_BASE +id // se tiver id digitado pegue apenas os dados dele
+    }
+
+        fetch(url)
         .then(response => response.json())
         .then(json => {
             json.forEach(cliente => {
@@ -83,7 +71,6 @@ function carregarTabela() {
             tDados.innerHTML = tabela
             statusLimpo()
         })
-    }
 }
 
 
@@ -114,31 +101,6 @@ function excluirDado(idDado) {
             carregarTabela()
     })
 }
-
-// btnConsultaId.addEventListener('click', () => {
-//     statusCarregando()
-//     var id = txtId.value
-//     var tabela = ''
-//     console.log(URL_BASE + id)
-//     fetch(URL_BASE + id)
-//         .then(response => response.json())
-//         .then(json => {
-//             json.forEach(cliente => {
-//                 tabela += `
-//                 <tr>
-//                     <td class="align-middle">${cliente.ID}</td>
-//                     <td class="align-middle">${cliente.NOME}</td>
-//                     <td class="align-middle">${cliente.EMAIL}</td>
-//                     <td class="align-middle">${cliente.TIPO}</td>
-//                     <td><button id="btnAlterar" onclick="inserirDadosForm(this.value);" value="${cliente.ID}" class="col btn btn-info">Alterar</button><button id="btnExcluir" value="${cliente.ID}" class="col btn btn-danger mt-2">Excluir</button></td>
-//                 </tr>
-//                 `
-//             });
-//             tDados.innerHTML = tabela
-//             statusLimpo()
-//             limpaForm()
-//         })
-// })
 
 btnConsulta.addEventListener('click', () => {
     carregarTabela()
