@@ -68,9 +68,30 @@ function excluirDado() {
 
 }
 
-btnConsultaId.addEventListener('click', consultaDadoPorId(txtId.value))
+btnConsultaId.addEventListener('click', () => {
+    var id = txtId.value
+    var tabela = ''
+    console.log(URL_BASE + id)
+    fetch(URL_BASE + id)
+        .then(response => response.json())
+        .then(json => {
+            json.forEach(cliente => {
+                tabela += `
+                <tr>
+                    <th scope="row"></th>
+                    <td>${cliente.ID}</td>
+                    <td>${cliente.NOME}</td>
+                    <td>${cliente.EMAIL}</td>
+                    <td>${cliente.TIPO}</td>
+                    <td><button id="btnAlterar" value="' + ${cliente.ID} + '" class="col btn btn-dark">Alterar</button><button id="btnExcluir" value="' + ${cliente.ID} + '" class="col btn btn-dark">Excluir</button></td>
+                </tr>
+                `
+            });
+            tDados.innerHTML = tabela
+        })
+})
 
-// FUNÇAO DE CONSULTAR
+/* FUNÇAO DE CONSULTAR
 function consultaDadoPorId(idDado) {
     console.log(URL_BASE + idDado)
     fetch(URL_BASE + idDado)
@@ -79,6 +100,7 @@ function consultaDadoPorId(idDado) {
             return json.NOME, json.EMAIL, json.TIPO;
         })
 }
+*/
 
 function isValidForm() {
     let error = true;
