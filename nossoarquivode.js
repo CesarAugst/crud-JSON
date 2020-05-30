@@ -38,6 +38,7 @@ gravar.addEventListener('click', () => {
                     statusLimpo()
                     limpaForm()
                     carregarTabela()
+                    gravar.innerHTML = 'Gravar'
                 })
         }
     }
@@ -100,6 +101,7 @@ function inserirDadosForm(idDado) {
             tipo.value = json[0].TIPO
             acao.value = 'atualizar'
             statusLimpo()
+            gravar.innerHTML = 'Atualizar'
         })
 }
 
