@@ -82,12 +82,14 @@ function excluirDado() {
     fetch(URL_BASE + txtId.value, {
             method: "DELETE"
         })
-        .then(response => response.json)
+        .then(response => response.json())
         .then(json => pResultado.innerHTML = json.mensagem) 
 }
 
-btnExcluir.addEventListener('click', () => {
-    excluirDado();
+tResultado.addEventListener("load", function(event) {
+    btnExcluir.addEventListener('click', () => {
+        excluirDado();
+    });
 });
 
 btnConsulta.addEventListener('click', () => {
