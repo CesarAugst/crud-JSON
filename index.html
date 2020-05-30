@@ -9,68 +9,64 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
-<body>
+<body class="bg-dark">
+    <div class="text-center font-weight text-light bg-info shadow p-2 mb-4">
+        <h1>CRUD JSON - Anderson, Cesar, Eloísa e Larissa</h1>
+    </div>
     <div class="container">
+        <form class="formulario text-light">
+            <div class="form-group">
+                <label class="ml-2">ID para consulta</label>
+                <input type="number" id="txtId" class="form-control form-control-lg" placeholder="Digite seu ID">
+            </div>
+            <div class="form-group ">
+                <label class="ml-2">Nome</label>
+                <input type="text" id="nome" class="form-control form-control-lg" placeholder="Digite seu nome">
+            </div>
+            <div class="form-group ">
+                <label class="ml-2">Email</label>
+                <input type="email" id="email" class="form-control form-control-lg" placeholder="Digite seu email">
+            </div>
+            <div class="form-group">
+                <label class="ml-2">Selecione o Tipo</label>
+                <select id="tipo" class="form-control">
+                    <option value="">Selecione a opção</option>
+                    <option value="FISICA">Pessoa Física</option>
+                    <option value="JURIDICA">Pessoa Jurídica</option>
+                </select>
+            </div>
+            <div class="form-group text-center">
+                <input type="hidden" id="incluir" value="incluir">
+                <button type="button" id="gravar" class="btn btn-outline-success"> Gravar </button>
+                <button type="reset" id="limpar" onclick="txtId.readOnly = false;" class="btn btn-outline-danger">Limpar</button>
+                <button type="button" id="btnConsulta" class="btn btn-outline-light">Consultar</button>
+                <input type="hidden" id="acao" value="cadastrar" />
+                <span id="load"></span>
+            </div>
+            <div class="form-group text-center">
+                <p id="pResultado" class="text-dark pt-3">&nbsp;</p>
+            </div>
+        </form>
 
-        <div class="text-center font-weightlight">
-            <h1>CRUD JSON - Anderson, Cesar, Eloisa e Larissa</h1>
-        </div>
-        <div class="formulario">
-            <form>
-                <div class="form-group">
-                    <div>
-                        <label class="col-md-3">ID para consulta</label>
-                        <input type="number" id="txtId" class="form-control form-control-lg" placeholder="Digite seu ID">
-                    </div>
-                    <div>
-                        <label class="col-md-3">Nome</label>
-                        <input type="text" id="nome" class="form-control form-control-lg" placeholder="Digite seu nome">
-                    </div>
-                    <div>
-                        <label class="col-md-3">Email</label>
-                        <input type="email" id="email" class="form-control form-control-lg"
-                            placeholder="Digite seu email">
-                    </div>
-                    <div class="form-group">
-                        <label>Selecione o Tipo</label>
-                        <select id="tipo" class="form-control">
-                            <option value="">Selecione a opção</option>
-                            <option value="FISICA">Pessoa Física</option>
-                            <option value="JURIDICA">Pessoa Jurídica</option>
-                        </select>
-                    </div>
-                    <div class="buttongroup">
-                        <input type="hidden" id="incluir" value="incluir">
-                        <button type="button" id="gravar" class="btn btn-light"> Gravar </button>
-                        <button type="reset" id="limpar" onclick="txtId.readOnly = false;" class="btn btn-light">Limpar</button>
-                        <button type="button" id="btnConsulta" class="btn btn-light">Consultar</button>
-                        <span id="load"></span>
-                    </div>
-                    <input type="hidden" id="acao" value="cadastrar" />
-            <p id="pResultado" class="text-dark pt-3">&nbsp;</p>
-        </div>
-            </form>
-        </div>
+    <div class="row">
+        <table class="table table-dark table-striped shadow rounded" id="tResultado">
 
-        <div class="row">
-            <table class="table table-striped" id="tResultado">
+            <thead class=" bg-info">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">NOME</th>
+                    <th scope="col">EMAIL</th>
+                    <th scope="col">TIPO</th>
+                    <th scope="col">AÇÃO</th>
+                </tr>
+            </thead>
+            <tbody id="tDados">
 
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">NOME</th>
-                        <th scope="col">EMAIL</th>
-                        <th scope="col">TIPO</th>
-                        <th scope="col">AÇÃO</th>
-                    </tr>
-                </thead>
-                <tbody id="tDados">
-
-                </tbody>
-                <tfoot>
-                </tfoot>
-            </table>
-        </div>
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+    </div>
     </div>
 
     <script src="nossoarquivode.js"></script>

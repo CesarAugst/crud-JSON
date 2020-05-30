@@ -57,7 +57,7 @@ function carregarTabela() {
                     <td class="align-middle">${cliente.NOME}</td>
                     <td class="align-middle">${cliente.EMAIL}</td>
                     <td class="align-middle">${cliente.TIPO}</td>
-                    <td><button id="btnAlterar" onclick="inserirDadosForm(this.value);" value="${cliente.ID}" class="col btn btn-dark">Alterar</button><button id="btnExcluir" value="${cliente.ID}" class="col btn btn-danger mt-2">Excluir</button></td>
+                    <td><button id="btnAlterar" onclick="inserirDadosForm(this.value);" value="${cliente.ID}" class="col btn btn-info">Alterar</button><button id="btnExcluir" value="${cliente.ID}" class="col btn btn-danger mt-2">Excluir</button></td>
                 </tr>
                 `
             });
@@ -187,7 +187,7 @@ function isValidForm() {
 }
 
 function statusCarregando() {
-    pResultado.innerHTML = '<div class="spinner-border text-dark" role="status"><span class="sr-only">Loading...</span></div> Por favor, aguarde...';
+    pResultado.innerHTML = '<div class="spinner-border text-light" role="status"><span class="sr-only">Loading...</span></div> Por favor, aguarde...';
 }
 
 function statusLimpo() {
