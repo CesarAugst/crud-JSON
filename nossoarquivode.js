@@ -106,7 +106,10 @@ function excluirDado(idDado) {
             method: "DELETE"
         })
         .then(response => response.json())
-        .then(json => pResultado.innerHTML = json.mensagem)
+        .then(json => {
+            pResultado.innerHTML = json.mensagem
+            carregarTabela()
+    })
 }
 
 // btnConsultaId.addEventListener('click', () => {
