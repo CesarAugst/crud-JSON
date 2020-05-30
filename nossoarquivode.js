@@ -82,13 +82,10 @@ function excluirDado() {
 
 }
 
-btnConsultaId.addEventListener('click', () => {
+btnConsulta.addEventListener('click', () => {
     carregarTabela()
 })
 
-btnConsultaGeral.addEventListener('click', () => {
-    carregarTabela()
-})
 
 /* FUNÇAO DE CONSULTAR
 function consultaDadoPorId(idDado) {
