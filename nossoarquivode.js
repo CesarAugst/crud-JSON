@@ -31,9 +31,18 @@ function carregarTabela() {
                                     '<td>' + cliente.NOME + '</td>' + 
                                     '<td>' + cliente.EMAIL + '</td>' + 
                                     '<td>' + cliente.TIPO + '</td>' + 
-                                    '<td><button id="btnAlterar" onclick="editarDado(this.value);" value="' + cliente.ID + '" class="col btn btn-dark">Alterar</button><button id="btnExcluir" value="' + cliente.ID + '" class="col btn btn-dark">Excluir</button></td>'
+                                    '<td><button id="btnAlterar" onclick="inserirDadosForm(this.value);" value="' + cliente.ID + '" class="col btn btn-dark">Alterar</button><button id="btnExcluir" value="' + cliente.ID + '" class="col btn btn-dark">Excluir</button></td>'
             });
         })
+}
+
+
+// FUNÇAO DE INSERIR NO FORM
+function inserirDadosForm(idDado){
+    dados = consultaDadoPorId(idDado)
+    // document.getElementById('nome').value = dados.NOME
+    nome.value = dados.NOME
+    console.log(typeof(dados))
 }
 
 function editarDado(idDado){
@@ -51,22 +60,17 @@ function excluirDado(){
 
 }
 
+btnConsultaId.addEventListener('click', consultaDadoPorId(txtId.value))
 
-btnConsultaId.addEventListener('click', () =>{
-    //recebe o campo onde digita a informação
-    id = txtId.value
-    console.log(URL_BASE + id)
-    fetch(URL_BASE + id)
+// FUNÇAO DE CONSULTAR
+function consultaDadoPorId(idDado){
+    console.log(URL_BASE + idDado)
+    fetch(URL_BASE + idDado)
         .then(response => response.json())
         .then(json => {
-            console.log(json[0].ID)
-            pResultado.innerHTML =
-                `Id: ${ json[0].ID}<br>
-                Nome: ${ json[0].NOME}<br>
-                Email: ${ json[0].EMAIL}<br>
-                Tipo: ${ json[0].TIPO}<br>`
+            return json.NOME, json.EMAIL, json.TIPO;
         })
-})
+    }
 
 btnConsultaGeral.addEventListener('click', () => {
     var tabela = ' '
