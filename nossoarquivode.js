@@ -57,7 +57,7 @@ function carregarTabela() {
                     <td class="align-middle">${cliente.NOME}</td>
                     <td class="align-middle">${cliente.EMAIL}</td>
                     <td class="align-middle">${cliente.TIPO}</td>
-                    <td><button id="btnAlterar" onclick="inserirDadosForm(this.value);" value="${cliente.ID}" class="col btn btn-info">Alterar</button><button id="btnExcluir" value="${cliente.ID}" class="col btn btn-danger mt-2">Excluir</button></td>
+                    <td><button id="btnAlterar" onclick="inserirDadosForm(this.value);" value="${cliente.ID}" class="col btn btn-info">Alterar</button><button id="btnExcluir" onclick="excluirDado(this.value)" value="${cliente.ID}" class="col btn btn-danger mt-2">Excluir</button></td>
                 </tr>
                 `
             });
@@ -74,7 +74,7 @@ function carregarTabela() {
                     <td class="align-middle">${cliente.NOME}</td>
                     <td class="align-middle">${cliente.EMAIL}</td>
                     <td class="align-middle">${cliente.TIPO}</td>
-                    <td><button id="btnAlterar" onclick="inserirDadosForm(this.value);" value="${cliente.ID}" class="col btn btn-dark">Alterar</button><button id="btnExcluir" value="${cliente.ID}" class="col btn btn-danger mt-2">Excluir</button></td>
+                    <td><button id="btnAlterar" onclick="inserirDadosForm(this.value);" value="${cliente.ID}" class="col btn btn-info">Alterar</button><button id="btnExcluir" onclick="excluirDado(this.value)" value="${cliente.ID}" class="col btn btn-danger mt-2">Excluir</button></td>
                 </tr>
                 `
             });
@@ -100,12 +100,16 @@ function inserirDadosForm(idDado) {
         })
 }
 
-function excluirDado() {
-    fetch(URL_BASE + txtId.value, {
+function excluirDado(idDado) {
+    statusCarregando()
+    fetch(URL_BASE + idDado, {
             method: "DELETE"
         })
         .then(response => response.json())
-        .then(json => pResultado.innerHTML = json.mensagem) 
+        .then(json => {
+            pResultado.innerHTML = json.mensagem
+            carregarTabela()
+    })
 }
 
 // btnConsultaId.addEventListener('click', () => {
@@ -123,7 +127,7 @@ function excluirDado() {
 //                     <td class="align-middle">${cliente.NOME}</td>
 //                     <td class="align-middle">${cliente.EMAIL}</td>
 //                     <td class="align-middle">${cliente.TIPO}</td>
-//                     <td><button id="btnAlterar" onclick="inserirDadosForm(this.value);" value="${cliente.ID}" class="col btn btn-dark">Alterar</button><button id="btnExcluir" value="${cliente.ID}" class="col btn btn-danger mt-2">Excluir</button></td>
+//                     <td><button id="btnAlterar" onclick="inserirDadosForm(this.value);" value="${cliente.ID}" class="col btn btn-info">Alterar</button><button id="btnExcluir" value="${cliente.ID}" class="col btn btn-danger mt-2">Excluir</button></td>
 //                 </tr>
 //                 `
 //             });
@@ -132,12 +136,6 @@ function excluirDado() {
 //             limpaForm()
 //         })
 // })
-
-tResultado.addEventListener("load", function(event) {
-    btnExcluir.addEventListener('click', () => {
-        excluirDado();
-    });
-});
 
 btnConsulta.addEventListener('click', () => {
     carregarTabela()
