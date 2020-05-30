@@ -5,9 +5,8 @@ window.addEventListener("load", function (event) {
 });
 
 gravar.addEventListener('click', () => {
-
     if (!isValidForm()) {
-
+        statusCarregando()
         fetch(URL_BASE, {
                 method: 'POST',
                 body: `nome=${nome.value}&email=${email.value}&tipo=${tipo.value}`,
@@ -16,9 +15,11 @@ gravar.addEventListener('click', () => {
                 }
             })
             .then(response => response.json())
-            .then(json => pResultado.innerHTML = json.mensagem);
+            .then(json => {
+                pResultado.innerHTML = json.mensagem
+                statusLimpo()
+            });
     }
-
 });
 
 function carregarTabela() {
@@ -45,23 +46,16 @@ function carregarTabela() {
 
 // FUNÇAO DE INSERIR NO FORM
 function inserirDadosForm(idDado) {
-    dados = consultaDadoPorId(idDado)
-    // document.getElementById('nome').value = dados.NOME
-    nome.value = dados.NOME
-    console.log(typeof (dados))
-}
-
-function editarDado(idDado) {
-    alert('foi carai, o id é ' + idDado)
-    fetch(URL_BASE, {
-            method: 'PUT',
-            body: `ID=${idDado}&NOME=${nome.value}&EMAIL=${email.value}&TIPO=${tipo.value}`,
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-        })
+    console.log(URL_BASE + idDado)
+    fetch(URL_BASE + idDado)
         .then(response => response.json())
-        .then(json => pResultado.innerHTML = json.mensagem)
+        .then(json => {
+            txtId.value = idDado
+            txtId.readOnly = true
+            nome.value = json[0].NOME
+            email.value = json[0].EMAIL
+            tipo.value = json[0].TIPO
+        })
 }
 
 function excluirDado() {
@@ -91,16 +85,6 @@ btnConsultaId.addEventListener('click', () => {
         })
 })
 
-/* FUNÇAO DE CONSULTAR
-function consultaDadoPorId(idDado) {
-    console.log(URL_BASE + idDado)
-    fetch(URL_BASE + idDado)
-        .then(response => response.json())
-        .then(json => {
-            return json.NOME, json.EMAIL, json.TIPO;
-        })
-}
-*/
 
 function isValidForm() {
     let error = true;
@@ -131,4 +115,12 @@ function isValidForm() {
     } else {
         tipo.style.border = '1px solid #ccc';
     }
+}
+
+function statusCarregando() {
+    pResultado.innerHTML = 'Por favor, aguarde <div class="spinner-border text-dark" role="status"><span class="sr-only">Loading...</span></div>';
+}
+
+function statusLimpo() {
+    pResultado.innerHTML = '';
 }
