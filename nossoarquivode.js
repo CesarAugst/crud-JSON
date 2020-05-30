@@ -30,7 +30,6 @@ function carregarTabela() {
             json.forEach(cliente => {
                 tabela += `
                 <tr>
-                    <th scope="row"></th>
                     <td>${cliente.ID}</td>
                     <td>${cliente.NOME}</td>
                     <td>${cliente.EMAIL}</td>
