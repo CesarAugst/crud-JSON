@@ -83,7 +83,7 @@ btnConsultaId.addEventListener('click', () => {
                     <td>${cliente.NOME}</td>
                     <td>${cliente.EMAIL}</td>
                     <td>${cliente.TIPO}</td>
-                    <td><button id="btnAlterar" value="' + ${cliente.ID} + '" class="col btn btn-dark">Alterar</button><button id="btnExcluir" value="' + ${cliente.ID} + '" class="col btn btn-dark">Excluir</button></td>
+                    <td><button id="btnAlterar" onclick="inserirDadosForm(this.value);" value="${cliente.ID}" class="col btn btn-dark">Alterar</button><button id="btnExcluir" value="${cliente.ID}" class="col btn btn-danger mt-2">Excluir</button></td>
                 </tr>
                 `
             });
