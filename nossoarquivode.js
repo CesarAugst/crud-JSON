@@ -136,7 +136,7 @@ function isValidForm() {
 }
 
 function statusCarregando() {
-    pResultado.innerHTML = 'Por favor, aguarde <div class="spinner-border text-dark" role="status"><span class="sr-only">Loading...</span></div>';
+    pResultado.innerHTML = '<div class="spinner-border text-dark" role="status"><span class="sr-only">Loading...</span></div> Por favor, aguarde...';
 }
 
 function statusLimpo() {
