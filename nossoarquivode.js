@@ -24,6 +24,7 @@ gravar.addEventListener('click', () => {
 
 function carregarTabela() {
     var tabela = ''
+    statusCarregando()
     fetch(URL_BASE)
         .then(response => response.json())
         // .then(json => retornoBotoes.innerHTML = json[0].NOME)
@@ -40,13 +41,14 @@ function carregarTabela() {
                 `
             });
             tDados.innerHTML = tabela
+            statusLimpo()
         })
 }
 
 
 // FUNÇAO DE INSERIR NO FORM
 function inserirDadosForm(idDado) {
-    console.log(URL_BASE + idDado)
+    statusCarregando()
     fetch(URL_BASE + idDado)
         .then(response => response.json())
         .then(json => {
@@ -55,6 +57,7 @@ function inserirDadosForm(idDado) {
             nome.value = json[0].NOME
             email.value = json[0].EMAIL
             tipo.value = json[0].TIPO
+            statusLimpo()
         })
 }
 
@@ -63,6 +66,7 @@ function excluirDado() {
 }
 
 btnConsultaId.addEventListener('click', () => {
+    statusCarregando()
     var id = txtId.value
     var tabela = ''
     console.log(URL_BASE + id)
@@ -81,6 +85,7 @@ btnConsultaId.addEventListener('click', () => {
                 `
             });
             tDados.innerHTML = tabela
+            statusLimpo()
         })
 })
 
