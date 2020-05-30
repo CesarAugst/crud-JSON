@@ -16,7 +16,7 @@ gravar.addEventListener('click', () => {
                 }
             })
             .then(response => response.json())
-            .then(json => pResultado.innerHTML = json.mensagem));
+            .then(json => pResultado.innerHTML = json.mensagem);
     }
 
 });
@@ -43,6 +43,15 @@ function carregarTabela() {
         })
 }
 
+
+// FUNÇAO DE INSERIR NO FORM
+function inserirDadosForm(idDado){
+    dados = consultaDadoPorId(idDado)
+    // document.getElementById('nome').value = dados.NOME
+    nome.value = dados.NOME
+    console.log(typeof(dados))
+}
+
 function editarDado(idDado){
     alert('foi carai, o id é ' + idDado)
     fetch(URL_BASE, {
@@ -58,22 +67,17 @@ function excluirDado(){
 
 }
 
+btnConsultaId.addEventListener('click', consultaDadoPorId(txtId.value))
 
-btnConsultaId.addEventListener('click', () =>{
-    //recebe o campo onde digita a informação
-    id = txtId.value
-    console.log(URL_BASE + id)
-    fetch(URL_BASE + id)
+// FUNÇAO DE CONSULTAR
+function consultaDadoPorId(idDado){
+    console.log(URL_BASE + idDado)
+    fetch(URL_BASE + idDado)
         .then(response => response.json())
         .then(json => {
-            console.log(json[0].ID)
-            pResultado.innerHTML =
-                `Id: ${ json[0].ID}<br>
-                Nome: ${ json[0].NOME}<br>
-                Email: ${ json[0].EMAIL}<br>
-                Tipo: ${ json[0].TIPO}<br>`
+            return json.NOME, json.EMAIL, json.TIPO;
         })
-})
+    }
 
 function isValidForm() {
     let error = true;
