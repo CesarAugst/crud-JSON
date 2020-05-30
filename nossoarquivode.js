@@ -7,7 +7,8 @@ window.addEventListener("load", function (event) {
 gravar.addEventListener('click', () => {
     if (!isValidForm()) {
         statusCarregando()
-        fetch(URL_BASE, {
+        if(acao.value == 'cadastrar'){
+            fetch(URL_BASE, {
                 method: 'POST',
                 body: `nome=${nome.value}&email=${email.value}&tipo=${tipo.value}`,
                 headers: {
@@ -19,6 +20,22 @@ gravar.addEventListener('click', () => {
                 pResultado.innerHTML = json.mensagem
                 statusLimpo()
             });
+
+        }else if (acao.value == 'atualizar'){
+            fetch(URL_BASE, {
+                method: 'PUT',
+                body: `ID=${txtId.value}&NOME=${nome.value}&EMAIL=${email.value}&TIPO=${tipo.value}`,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            })
+            .then(response => response.json())
+            .then(json => {
+                pResultado.innerHTML = json.mensagem
+                acao.value = 'cadastrar'
+            })
+            statusLimpo()
+        }
     }
 });
 
@@ -57,6 +74,7 @@ function inserirDadosForm(idDado) {
             nome.value = json[0].NOME
             email.value = json[0].EMAIL
             tipo.value = json[0].TIPO
+            acao.value = 'atualizar'
             statusLimpo()
         })
 }
