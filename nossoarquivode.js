@@ -44,6 +44,7 @@ gravar.addEventListener('click', () => {
 });
 
 function carregarTabela() {
+    statusCarregando() 
     var tabela = ''
     var id = txtId.value
     if(id== ""){
@@ -62,6 +63,7 @@ function carregarTabela() {
                 `
             });
             tDados.innerHTML = tabela
+            carregarTabela()
         })
     }else{
         fetch(URL_BASE + id)
@@ -79,6 +81,7 @@ function carregarTabela() {
                 `
             });
             tDados.innerHTML = tabela
+            carregarTabela()
         })
     }
 }
