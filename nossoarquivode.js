@@ -101,7 +101,7 @@ function inserirDadosForm(idDado) {
 }
 
 function excluirDado(idDado) {
-    console.log('aqui')
+    statusCarregando()
     fetch(URL_BASE + idDado, {
             method: "DELETE"
         })
