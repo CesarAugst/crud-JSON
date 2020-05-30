@@ -63,7 +63,7 @@ function carregarTabela() {
                 `
             });
             tDados.innerHTML = tabela
-            carregarTabela()
+            statusLimpo()
         })
     }else{
         fetch(URL_BASE + id)
@@ -81,7 +81,7 @@ function carregarTabela() {
                 `
             });
             tDados.innerHTML = tabela
-            carregarTabela()
+            statusLimpo()
         })
     }
 }
