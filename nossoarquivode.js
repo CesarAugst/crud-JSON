@@ -30,11 +30,11 @@ function carregarTabela() {
             json.forEach(cliente => {
                 tabela += `
                 <tr>
-                    <td>${cliente.ID}</td>
-                    <td>${cliente.NOME}</td>
-                    <td>${cliente.EMAIL}</td>
-                    <td>${cliente.TIPO}</td>
-                    <td><button id="btnAlterar" onclick="inserirDadosForm(this.value);" value="${cliente.ID}" class="col btn btn-dark">Alterar</button><button id="btnExcluir" value="${cliente.ID}" class="col btn btn-dark">Excluir</button></td>
+                    <td class="align-middle">${cliente.ID}</td>
+                    <td class="align-middle">${cliente.NOME}</td>
+                    <td class="align-middle">${cliente.EMAIL}</td>
+                    <td class="align-middle">${cliente.TIPO}</td>
+                    <td><button id="btnAlterar" onclick="inserirDadosForm(this.value);" value="${cliente.ID}" class="col btn btn-dark">Alterar</button><button id="btnExcluir" value="${cliente.ID}" class="col btn btn-danger mt-2">Excluir</button></td>
                 </tr>
                 `
             });
