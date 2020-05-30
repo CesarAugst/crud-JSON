@@ -7,7 +7,7 @@ window.addEventListener("load", function(event) {
 gravar.addEventListener('click', () => {
 
     if (!isValidForm()) {
-        console.log('ok')
+
         fetch(URL_BASE, {
                 method: 'POST',
                 body: `nome=${nome.value}&email=${email.value}&tipo=${tipo.value}`,
@@ -16,7 +16,7 @@ gravar.addEventListener('click', () => {
                 }
             })
             .then(response => response.json())
-            .then(json => console.log(json.mensagem));
+            .then(json => pResultado.innerHTML = json.mensagem));
     }
 
 });
