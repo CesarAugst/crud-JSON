@@ -1,6 +1,6 @@
 const URL_BASE = 'https://www.wllsistemas.com.br/api/v2/public/pessoa/'
 
-window.addEventListener("load", function(event) {
+window.addEventListener("load", function (event) {
     carregarTabela()
 });
 
@@ -22,7 +22,7 @@ gravar.addEventListener('click', () => {
 });
 
 function carregarTabela() {
-    var tabela =''
+    var tabela = ''
     fetch(URL_BASE)
         .then(response => response.json())
         // .then(json => retornoBotoes.innerHTML = json[0].NOME)
@@ -34,7 +34,7 @@ function carregarTabela() {
                     <td>${cliente.NOME}</td>
                     <td>${cliente.EMAIL}</td>
                     <td>${cliente.TIPO}</td>
-                    <td><button id="btnAlterar" value="' + ${cliente.ID} + '" class="col btn btn-dark">Alterar</button><button id="btnExcluir" value="' + ${cliente.ID} + '" class="col btn btn-dark">Excluir</button></td>
+                    <td><button id="btnAlterar" onclick="inserirDadosForm(this.value);" value="${cliente.ID}" class="col btn btn-dark">Alterar</button><button id="btnExcluir" value="${cliente.ID}" class="col btn btn-dark">Excluir</button></td>
                 </tr>
                 `
             });
@@ -44,39 +44,41 @@ function carregarTabela() {
 
 
 // FUNÇAO DE INSERIR NO FORM
-function inserirDadosForm(idDado){
+function inserirDadosForm(idDado) {
     dados = consultaDadoPorId(idDado)
     // document.getElementById('nome').value = dados.NOME
     nome.value = dados.NOME
-    console.log(typeof(dados))
+    console.log(typeof (dados))
 }
 
-function editarDado(idDado){
+function editarDado(idDado) {
     alert('foi carai, o id é ' + idDado)
     fetch(URL_BASE, {
-        method: 'PUT',
-        body: `ID=${idDado}&NOME=${nome.value}&EMAIL=${email.value}&TIPO=${tipo.value}`,
-        headers: {'Content-Type' : 'application/x-www-form-urlencoded'}
-    })
-    .then(response => response.json())
-    .then(json => pResultado.innerHTML = json.mensagem)
+            method: 'PUT',
+            body: `ID=${idDado}&NOME=${nome.value}&EMAIL=${email.value}&TIPO=${tipo.value}`,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        })
+        .then(response => response.json())
+        .then(json => pResultado.innerHTML = json.mensagem)
 }
 
-function excluirDado(){
+function excluirDado() {
 
 }
 
 btnConsultaId.addEventListener('click', consultaDadoPorId(txtId.value))
 
 // FUNÇAO DE CONSULTAR
-function consultaDadoPorId(idDado){
+function consultaDadoPorId(idDado) {
     console.log(URL_BASE + idDado)
     fetch(URL_BASE + idDado)
         .then(response => response.json())
         .then(json => {
             return json.NOME, json.EMAIL, json.TIPO;
         })
-    }
+}
 
 function isValidForm() {
     let error = true;
