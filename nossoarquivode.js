@@ -7,34 +7,38 @@ window.addEventListener("load", function (event) {
 gravar.addEventListener('click', () => {
     if (!isValidForm()) {
         statusCarregando()
-        if(acao.value == 'cadastrar'){
+        if (acao.value == 'cadastrar') {
             fetch(URL_BASE, {
-                method: 'POST',
-                body: `nome=${nome.value}&email=${email.value}&tipo=${tipo.value}`,
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
-            })
-            .then(response => response.json())
-            .then(json => {
-                pResultado.innerHTML = json.mensagem
-                statusLimpo()
-            });
+                    method: 'POST',
+                    body: `nome=${nome.value}&email=${email.value}&tipo=${tipo.value}`,
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                })
+                .then(response => response.json())
+                .then(json => {
+                    pResultado.innerHTML = json.mensagem
+                    statusLimpo()
+                    limpaForm()
+                    carregarTabela()
+                });
 
-        }else if (acao.value == 'atualizar'){
+        } else if (acao.value == 'atualizar') {
             fetch(URL_BASE, {
-                method: 'PUT',
-                body: `ID=${txtId.value}&NOME=${nome.value}&EMAIL=${email.value}&TIPO=${tipo.value}`,
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
-            })
-            .then(response => response.json())
-            .then(json => {
-                pResultado.innerHTML = json.mensagem
-                acao.value = 'cadastrar'
-            })
-            statusLimpo()
+                    method: 'PUT',
+                    body: `id=${txtId.value}&nome=${nome.value}&email=${email.value}&tipo=${tipo.value}`,
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                })
+                .then(response => response.json())
+                .then(json => {
+                    pResultado.innerHTML = json.mensagem
+                    acao.value = 'cadastrar'
+                    statusLimpo()
+                    limpaForm()
+                    carregarTabela()
+                })
         }
     }
 });
@@ -104,6 +108,7 @@ btnConsultaId.addEventListener('click', () => {
             });
             tDados.innerHTML = tabela
             statusLimpo()
+            limpaForm()
         })
 })
 
@@ -124,6 +129,18 @@ function consultaDadoPorId(idDado) {
 
 function isValidForm() {
     let error = true;
+
+    if (acao.value == 'atualizar') {
+        if (txtId.value == '') {
+            txtId.style.border = '2px solid red';
+            pResultado.innerHTML = 'Favor preencher o campo ID';
+
+            error = false;
+        } else {
+            nome.style.border = '1px solid #ccc';
+        }
+    }
+
 
     if (nome.value == '') {
         nome.style.border = '2px solid red';
@@ -159,4 +176,12 @@ function statusCarregando() {
 
 function statusLimpo() {
     pResultado.innerHTML = '';
+}
+
+function limpaForm() {
+    txtId.readOnly = false;
+    txtId.value = '';
+    nome.value = '';
+    email.value = '';
+    tipo.value = '';
 }
