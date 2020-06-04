@@ -57,20 +57,41 @@ function carregarTabela() {
         fetch(url)
         .then(response => response.json())
         .then(json => {
-            json.forEach(cliente => {
-                tabela += `
+            try {
+                json.forEach(cliente => {
+                    tabela += `
+                    <tr>
+                        <td class="align-middle">${cliente.ID}</td>
+                        <td class="align-middle">${cliente.NOME}</td>
+                        <td class="align-middle">${cliente.EMAIL}</td>
+                        <td class="align-middle">${cliente.TIPO}</td>
+                        <td><button id="btnAlterar" onclick="inserirDadosForm(this.value);" value="${cliente.ID}" class="col btn btn-info">Alterar</button><button id="btnExcluir" onclick="excluirDado(this.value)" value="${cliente.ID}" class="col btn btn-danger mt-2">Excluir</button></td>
+                    </tr>
+                    `
+                });                
+            } catch {
+                tabela = `
                 <tr>
-                    <td class="align-middle">${cliente.ID}</td>
-                    <td class="align-middle">${cliente.NOME}</td>
-                    <td class="align-middle">${cliente.EMAIL}</td>
-                    <td class="align-middle">${cliente.TIPO}</td>
-                    <td><button id="btnAlterar" onclick="inserirDadosForm(this.value);" value="${cliente.ID}" class="col btn btn-info">Alterar</button><button id="btnExcluir" onclick="excluirDado(this.value)" value="${cliente.ID}" class="col btn btn-danger mt-2">Excluir</button></td>
+                    <td class="align-middle warning" colspan="5"> <center>Houve um erro na execução da operação, verifique as informações digitadas e/ou a conexão com a internet.</center></td>
                 </tr>
                 `
-            });
-            tDados.innerHTML = tabela
+            }
+            tDados.innerHTML = tabela;
             statusLimpo()
         })
+}
+
+function limpaTabela() {
+    tabela += `
+                    <tr>
+                        <td class="align-middle"> </td>
+                        <td class="align-middle"> </td>
+                        <td class="align-middle"> </td>
+                        <td class="align-middle"> </td>
+                        <td> </td>
+                    </tr>
+                    `
+    tDados.innerHTML = tabela
 }
 
 
