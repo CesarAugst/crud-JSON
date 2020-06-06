@@ -1,6 +1,6 @@
-# crud-JSON
-Projeto para a aula de Javascript do terceiro semestre do curso de Sistemas para a internet
-Desenvolvido por: 
+# javascript-json-api
+Projeto para a aula de Javascript do terceiro semestre do curso de Sistemas para a internet.
+Desenvolvido inicialmente por: 
 <ul>
   <li><a href="https://github.com/CesarAugst" target="_blank">Cesar August<a/></li>
   <li><a href="https://github.com/EloisaSemH">Eloisa Carvalho</a></li>
